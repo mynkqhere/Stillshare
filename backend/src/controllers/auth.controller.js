@@ -13,7 +13,7 @@ async function Register(req, res){
         $or:[{Username: username},{Email: email}]
     })
 
-    if(isuserexists){return res.status(401).json({Message: "User already exist."})}
+    if(isuserexists){return res.status(401).json({Message: "User already exist, please login."})}
     const hashedpassword = await bcrypt.hash(password, 10);
     const registeruser = await UserModel.create({
         Username: username,
@@ -31,4 +31,24 @@ async function Register(req, res){
 
 
 }
-module.exports = {Register};
+
+async function Login(req, res){
+const username = req.body.username
+const password = req.body.password;
+const email = req.body.email;
+
+const isuserexists = await UserModel.findOne({
+    $or:[{Username: username},{Email: email}]
+})
+
+if(!isuserexists){return res.status(401).json({Message: " user is not registerd."})}
+const verify = await bcrypt.compare(username, isuserexists.Password)
+if(!verify){return res.status(401).json({Message: "Invalid Credentials"})};
+const token = jwt.sign({id: isuserexists._id}, process.env.Jwt_Secret);
+res.cookie("token", token)
+res.status(201).json({Message: "User Login successfully!"})
+
+
+
+}
+module.exports = {Register, Login};
