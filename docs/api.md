@@ -6,3 +6,5 @@ Our Auth Api
 Our Post Api
 /api/post/create-post (To create posts) 
 /api/post/ (To fetch posts)
+
+server url -> https://stillshare-y7ku.onrender.com/
