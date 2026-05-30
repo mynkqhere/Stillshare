@@ -5,3 +5,4 @@ const postSchema = new mongoose.Schema({
     User: {type: mongoose.Schema.Types.ObjectId, ref: "Users"}
 })
 const PostModel = mongoose.model("Post", postSchema)
+module.exports = PostModel;
