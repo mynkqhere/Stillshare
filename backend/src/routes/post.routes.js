@@ -1,8 +1,10 @@
 const Multer = require('multer');
+const authpostMiddleware = require('../Middlewares/auth.post.middlewares');
 const postController = require('../controllers/post.controller');
 const express = require("express");
 const multer = require('multer');
 const router = express.Router();
 const upload = multer({Storage: multer.memoryStorage()});
-router.post('/create-post', upload.single("Post"), postController.Post);
+router.post('/create-post', authpostMiddleware.Auth, upload.single("Post"), postController.Post);
+router.get('/get-posts', authpostMiddleware.Auth,postController.GetPosts);
 module.exports = router;

@@ -15,7 +15,11 @@ const post = await PostModel.create({
     Caption: req.body.Caption
 })
 res.status(201).json({Message: "Post Created Successfully!", post});
-
 }
-module.exports = {Post};
+
+async function GetPosts(req, res){ // need work here 
+    const posts = await PostModel.find().populate("User", "Username Email")
+    res.status(201).json({Message: "Posts Fetched Successfully!", posts})
+}
+module.exports = {Post, GetPosts};
 
