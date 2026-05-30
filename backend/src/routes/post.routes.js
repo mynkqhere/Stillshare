@@ -6,5 +6,5 @@ const multer = require('multer');
 const router = express.Router();
 const upload = multer({Storage: multer.memoryStorage()});
 router.post('/create-post', authpostMiddleware.Auth, upload.single("Post"), postController.Post);
-router.get('/get-posts', authpostMiddleware.Auth,postController.GetPosts);
+router.get('/', authpostMiddleware.Auth,postController.GetPosts);
 module.exports = router;

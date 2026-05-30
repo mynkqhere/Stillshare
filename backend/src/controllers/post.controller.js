@@ -12,7 +12,8 @@ const result = await Upload(Buffer, fileName)
 console.log(result) // for testing purpose
 const post = await PostModel.create({
     Post: result.url,
-    Caption: req.body.Caption
+    Caption: req.body.Caption,
+    User: req.user
 })
 res.status(201).json({Message: "Post Created Successfully!", post});
 }
