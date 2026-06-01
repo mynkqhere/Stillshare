@@ -1,16 +1,24 @@
 "use client";
 import axios from "axios";
+import { error } from "console";
 function Register(){
 async function handlesubmit(e: any){
     e.preventDefault();
     const formData = new FormData(e.target);
     console.log(formData) // testing if formdata is being captured correctly.
-        await axios.post("https://stillshare-y7ku.onrender.com/api/auth/register", {
+    try{
+    const response = await axios.post("https://stillshare-y7ku.onrender.com/api/auth/register", {
         username: formData.get("username"),
         email: formData.get("email"),
         password: formData.get("password"),
 
-     })}
+     })
+    console.log("Registration Successfull")
+    console.log(response.data.Message);
+    }catch(error){
+        console.error("Error during registration:"),
+        console.error(error.response.data.Message)}
+     }
         return (<div className=" bg-black min-h-screen border flex flex-col items-center justify-center p-4 " >
         <span className="text-white font-bold ">Register</span>
         <form onSubmit={handlesubmit} className="flex flex-col items-center  p-4 gap-4 ">
