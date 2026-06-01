@@ -1,4 +1,8 @@
+import Register from "./Components/register";
+
 function Home(){
-  return(<div>Lets start</div>)
+  return(<div>
+    <Register/>
+  </div>)
 }
 export default Home;

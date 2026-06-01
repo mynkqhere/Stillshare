@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
-const authRoute = require("../routes/auth.route")
 const UserModel = require("../models/user.model");
 async function Register(req, res){
     console.log("Request Recieved", req.body) // testing purpose
@@ -8,12 +7,11 @@ async function Register(req, res){
     const email = req.body.email;
     const password = req.body.password;
     console.log(username, email, password) // testing purpose
-
-    const isuserexists = await UserModel.findOne({
-        $or:[{Username: username},{Email: email}]
-    })
-
-    if(isuserexists){return res.status(401).json({Message: "User already exist, please login."})}
+    const isusernametaken = await UserModel.findOne({Username: username})
+    if(isusernametaken){return res.status(401).json({Message: "Username taken,"})}
+    const isemailtaken = await UserModel.findOne({Email: email})
+    if(isemailtaken){return res.status(401).json({Message: "Email taken,"})}
+    
     const hashedpassword = await bcrypt.hash(password, 10);
     const registeruser = await UserModel.create({
         Username: username,
@@ -40,9 +38,8 @@ const email = req.body.email;
 const isuserexists = await UserModel.findOne({
     $or:[{Username: username},{Email: email}]
 })
-
-if(!isuserexists){return res.status(401).json({Message: " user is not registerd."})}
-const verify = await bcrypt.compare(username, isuserexists.Password)
+if(!isuserexists){return res.status(401).json({Message: " user is not registerd."})};
+const verify = await bcrypt.compare(password, isuserexists.Password)
 if(!verify){return res.status(401).json({Message: "Invalid Credentials"})};
 const token = jwt.sign({id: isuserexists._id}, process.env.Jwt_Secret);
 res.cookie("token", token)
