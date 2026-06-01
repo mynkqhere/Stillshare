@@ -18,22 +18,24 @@ async function handlesubmit(e: any){
      })
     console.log("Registration Successfull")
     setSucessMessage(response.data.Message);
+    
     console.log(response.data.Message);
     }catch(error){
         console.error("Error during registration:"),
         console.error(error.response.data.Message);
         setErrorMessage(error.response.data.Message)
+        
     };
      }
         return (<div className=" bg-black min-h-screen border flex flex-col items-center justify-center p-4 " >
         <span className="text-white font-bold ">Register</span>
         <form onSubmit={handlesubmit} className="flex flex-col items-center  p-4 gap-4 ">
-            <input className=" text-white p-2 border rounded-sm " type="text" name="username" placeholder="Username" />
-            <input className=" text-white p-2 border rounded-sm " type="text" name="email" placeholder="Email" />
-            <input className=" text-white p-2 border rounded-sm " type="text" name="password" placeholder="Password" />
+            <input onChange={()=>{setSucessMessage(""); setErrorMessage("");}} className=" text-white p-2 border rounded-sm " type="text" name="username" placeholder="Username" />
+            <input onChange={()=>{setSucessMessage(""); setErrorMessage("");}} className=" text-white p-2 border rounded-sm " type="text" name="email" placeholder="Email" />
+            <input onChange={()=>{setSucessMessage(""); setErrorMessage("");}} className=" text-white p-2 border rounded-sm " type="text" name="password" placeholder="Password" />
             <button className="text-white p-2 border rounded-sm" type="submit" >Submit</button>
-        {errormessage && <span className="text-red-500" >{errormessage}</span>}
-        {successmessage && <span className="text-green-500" >{successmessage}</span>}
+        {errormessage && <span className="text-red-500 text-sm" >{errormessage}</span>}
+        {successmessage && <span className="text-green-500 text-sm " >{successmessage}</span>}
         
         </form>
     </div>)
