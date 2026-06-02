@@ -1,7 +1,9 @@
 "use client";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useState } from "react";
 function Register(){
+    const router = useRouter();
     const [errormessage, setErrorMessage] = useState("");
     const [successmessage, setSucessMessage] = useState("");
 async function handlesubmit(e: any){
@@ -16,11 +18,16 @@ async function handlesubmit(e: any){
 
      })
     console.log("Registration Successfull")
+    console.log(response.status)
     setSucessMessage(response.data.Message);
+    if(response.status === 201){
+    router.push("/Feed");
+    }
     
     console.log(response.data.Message);
     }catch(error: any){
         console.error("Error during registration:"),
+        console.error(error.response.status)
         console.error(error.response.data.Message);
         setErrorMessage(error.response.data.Message)
         
