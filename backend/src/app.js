@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieparser());
 app.use("/api/auth", authRoute);
-app.use("/api/post/", postRoute);
+app.use("/api/post", postRoute);
 
 
 module.exports = app;

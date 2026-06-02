@@ -1,4 +1,8 @@
+import Feedcard from "../Components/feed";
+
 function Feed(){
-    return(<div>Welcome to the feed registration was sucessfull!</div>)
+    return(<div>
+        <Feedcard/>
+    </div>)
 }
 export default Feed;
