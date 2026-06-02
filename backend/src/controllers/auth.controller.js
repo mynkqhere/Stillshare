@@ -8,7 +8,7 @@ async function Register(req, res){
     const password = req.body.password;
     console.log(username, email, password) // testing purpose
     const isusernametaken = await UserModel.findOne({Username: username})
-    if(isusernametaken){return res.status(401).json({Message: "Username taken,"})}
+    if(isusernametaken){return res.status(401).json({Message: "Username is taken"})}
     const isemailtaken = await UserModel.findOne({Email: email})
     if(isemailtaken){return res.status(401).json({Message: "Email taken,"})}
     

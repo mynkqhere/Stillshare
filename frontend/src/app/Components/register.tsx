@@ -32,7 +32,7 @@ async function handlesubmit(e: any){
             <input onChange={()=>{setSucessMessage(""); setErrorMessage("");}} className=" text-white p-2 border rounded-sm " type="text" name="username" placeholder="Username" />
             <input onChange={()=>{setSucessMessage(""); setErrorMessage("");}} className=" text-white p-2 border rounded-sm " type="text" name="email" placeholder="Email" />
             <input className=" text-white p-2 border rounded-sm " type="text" name="password" placeholder="Password" />
-            <button className="text-white p-2 border rounded-sm" type="submit" >Submit</button>
+            <button className=" transition hover:border-blue-600 text-white p-2 border rounded-sm" type="submit" >Submit</button>
         {errormessage && <span className="text-red-500 text-sm" >{errormessage}</span>}
         {successmessage && <span className="text-green-500 text-sm " >{successmessage}</span>}
         
