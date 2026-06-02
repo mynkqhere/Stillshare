@@ -8,13 +8,13 @@ function Register(){
     const [successmessage, setSucessMessage] = useState("");
 async function handlesubmit(e: any){
     e.preventDefault();
-    const formData = new FormData(e.target);
-    console.log(formData) // testing if formdata is being captured correctly.
+    const registerformData = new FormData(e.target);
+    console.log(registerformData) // testing if formdata is being captured correctly.
     try{
     const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, {
-        username: formData.get("username"),
-        email: formData.get("email"),
-        password: formData.get("password"),
+        username: registerformData.get("username"),
+        email: registerformData.get("email"),
+        password: registerformData.get("password"),
 
      })
     console.log("Registration Successfull")
@@ -32,14 +32,23 @@ async function handlesubmit(e: any){
         setErrorMessage(error.response.data.Message)
         
     };
-     }
+    
+    try{
+        const loginResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
+            email: registerformData.get("email"),
+            password: registerformData.get("password"),}, {withCredentials: true})
+    }
+    
+    catch(error){console.error("Login failed:", error)}
+}
         return (<div className=" bg-black min-h-screen border flex flex-col items-center justify-center p-4 " >
         <span className="text-white font-bold ">Register</span>
         <form onSubmit={handlesubmit} className="flex flex-col items-center  p-4 gap-4 ">
-            <input onChange={()=>{setSucessMessage(""); setErrorMessage("");}} className=" text-white p-2 border rounded-sm " type="text" name="username" placeholder="Username" />
-            <input onChange={()=>{setSucessMessage(""); setErrorMessage("");}} className=" text-white p-2 border rounded-sm " type="text" name="email" placeholder="Email" />
+            <input className=" text-white p-2 border rounded-sm " type="text" name="username" placeholder="Username" />
+            <input  className=" text-white p-2 border rounded-sm " type="text" name="email" placeholder="Email" />
             <input className=" text-white p-2 border rounded-sm " type="text" name="password" placeholder="Password" />
             <button className=" transition hover:border-blue-600 text-white p-2 border rounded-sm" type="submit" >Submit</button>
+              <span>Already have an account? <a href="/Login" className="text-blue-500 hover:underline" >Login</a></span>
         {errormessage && <span className="text-red-500 text-sm" >{errormessage}</span>}
         {successmessage && <span className="text-green-500 text-sm " >{successmessage}</span>}
         
