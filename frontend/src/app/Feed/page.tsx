@@ -1,8 +1,7 @@
-import Feedcard from "../Components/feed";
-
+import FeedCard from "../Components/feed";
 function Feed(){
     return(<div>
-        <Feedcard/>
+        <FeedCard/>
     </div>)
 }
 export default Feed;

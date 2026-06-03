@@ -1,8 +1,7 @@
-import Register from "./Components/register";
-
+import RegisterForm from "./Components/registerform";
 function Home(){
   return(<div>
-    <Register/>
-  </div>)
+    <RegisterForm/>
+  </div>);
 }
 export default Home;
