@@ -1,4 +1,5 @@
 "use client";
+import styles from "../css/signup.module.css";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 function Loginform() {
@@ -28,37 +29,39 @@ function Loginform() {
   }
 
   return (
-    <div className=" bg-black min-h-screen border flex flex-col items-center justify-center p-4 ">
-      <span className="text-white font-bold ">Login</span>
+    <div className={styles.screen}>
+      <div className={styles.card}>
+      <h1 className={styles.heading}>Login</h1>
       <form
         onSubmit={handlesubmit}
-        className="flex flex-col items-center  p-4 gap-4 "
+        className={styles.form}
       >
         <input
-          className=" text-white p-2 border rounded-sm "
+          className={styles.input}
           type="text"
           name="username"
           placeholder="Username"
         />
         <input
-          className=" text-white p-2 border rounded-sm "
+          className={styles.input}
           type="text"
           name="email"
           placeholder="Email"
         />
         <input
-          className=" text-white p-2 border rounded-sm "
+          className={styles.input}
           type="text"
           name="password"
           placeholder="Password"
         />
         <button
-          className=" transition hover:border-blue-600 text-white p-2 border rounded-sm"
+          className={styles.submit}
           type="submit"
         >
           Login
         </button>
       </form>
+      </div>
     </div>
   );
 }
