@@ -2,8 +2,13 @@
 import PostCard from "./postcard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+type Post ={
+  _id: string,
+  Post: string
+
+}
 function FeedCard() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   async function fetchposts() {
     try {
       const response = await axios.get(
