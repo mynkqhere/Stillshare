@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "kill": "kill $(lsof -t -i:3000)"
+    "kill": "kill $(lsof -t -i:3000)",
+    "vercel-build": "next build"
   },
   "dependencies": {
     "axios": "^1.16.1",
