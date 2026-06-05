@@ -31,7 +31,7 @@ function Loginform() {
   return (
     <div className={styles.screen}>
       <div className={styles.card}>
-      <h1 className={styles.heading}>Login</h1>
+      <h1 className={styles.heading}>Stillshare</h1>
       <form
         onSubmit={handlesubmit}
         className={styles.form}
@@ -54,6 +54,7 @@ function Loginform() {
           name="password"
           placeholder="Password"
         />
+        <a className={styles.link} href="#forgot-password">Forgot your password?</a>
         <button
           className={styles.submit}
           type="submit"
@@ -61,6 +62,8 @@ function Loginform() {
           Login
         </button>
       </form>
+      <p className={styles.label}>Don't have an account?</p>
+       <a className={styles.link} href="/">Sign up</a>
       </div>
     </div>
   );

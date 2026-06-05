@@ -55,7 +55,7 @@ function RegisterForm() {
           <input className={styles.input} type="text" name="username" placeholder="Username" />
           <input className={styles.input} type="text" name="email" placeholder="Email" />
           <input className={styles.input} type="text" name="password" placeholder="Password" />
-          <button className={styles.submit} type="submit">Submit</button>
+          <button className={styles.submit} type="submit">Sign up</button>
         </form>
         <p className={styles.label}>Already have an account?</p>
         <a className={styles.link} href="/login">login</a>
