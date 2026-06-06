@@ -23,7 +23,11 @@ async function Register(req, res){
     
         const token = jwt.sign({id: registeruser._id,}, process.env.Jwt_Secret);
     
-    res.cookie("token", token);
+    res.cookie("token", token,{
+        sameSite: "none",
+        secure: true,
+        httpOnly: true
+    })
     res.status(201).json({Message: "User registerd!"})
 
 
@@ -42,7 +46,11 @@ if(!isuserexists){return res.status(401).json({Message: " user is not registerd.
 const verify = await bcrypt.compare(password, isuserexists.Password)
 if(!verify){return res.status(401).json({Message: "Invalid Credentials"})};
 const token = jwt.sign({id: isuserexists._id}, process.env.Jwt_Secret);
-res.cookie("token", token)
+res.cookie("token", token,{
+    sameSite: "none",
+    secure: true,
+    httpOnly: true
+})
 res.status(201).json({Message: "User Login successfully!"})
 
 
