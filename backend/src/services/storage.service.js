@@ -1,7 +1,8 @@
+require('dotenv').config();
 const PostController = require('../controllers/post.controller');
 const ImageKit = require('@imagekit/nodejs');
 const ImageKitClient = new ImageKit({
-     privateKey: process.env.ImageKit_Key
+   privateKey: process.env.ImageKit_Key
 })
 async function Upload(Buffer, fileName){
     const response = await ImageKitClient.files.upload({
