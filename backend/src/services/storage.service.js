@@ -1,5 +1,4 @@
 require('dotenv').config();
-const PostController = require('../controllers/post.controller');
 const ImageKit = require('@imagekit/nodejs');
 const ImageKitClient = new ImageKit({
    privateKey: process.env.ImageKit_Key
