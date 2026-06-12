@@ -7,12 +7,11 @@ const [posts, setPosts] = useState([]);
 async function fetchposts() {
 try {
 const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/post/`, {withCredentials: true});
-// try response
-console.log(response)
-console.log(response.data.Message); 
+console.log(response.data.posts)
+const successmsg = response.data.Message
+setPosts(response.data.posts)
 } catch (error: any) {
-// errors of post 
-console.error("Failed to fetch posts", error.response.data.Message)
+console.error("Failed to Fetch Posts", error)
 }
 }
 useEffect(() => {
@@ -20,8 +19,8 @@ fetchposts();
 }, []);
 return (
 <div>
-{posts.map((file) => (
-<PostCard key={file._id} post={file.Post} />
+{posts.map((file: any) => (
+<PostCard key={file._id} post={file.Post} username={file.User.Username} caption={file.Caption}/>
 ))}
 </div>
 );
