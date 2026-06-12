@@ -1,10 +1,11 @@
-const Upload = require('../services/storage.service');
-const PostModel = require('../models/post.model');
+const  Upload = require("../services/storage.service")
+const PostModel = require('../models/post.model')
 async function Post(req, res){
 console.log(req.body); // for testing purpose
 console.log(req.file); // for testing purpose 
 console.log(req.file.buffer); // for testing purpose 
 console.log(req.file.originalname) // for testing purpose
+console.log("testing caption",req.body.Caption)// for testing purpose 
 // storing them inside variables
 const Buffer = req.file.buffer;
 const fileName = req.file.originalname;
