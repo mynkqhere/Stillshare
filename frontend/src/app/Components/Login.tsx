@@ -1,11 +1,12 @@
 "use client";
+import { useState } from "react";
 import styles from "../css/signup.module.css";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 function Loginform() {
-
-  const router = useRouter();
-  async function handlesubmit(e: any) {
+const router = useRouter()
+const [errormessage, setErrorMessage] = useState("")
+async function handlesubmit(e: any) {
     e.preventDefault();
     const loginformdata = new FormData(e.target);
     console.log(loginformdata);
@@ -22,15 +23,11 @@ function Loginform() {
       );
       console.log("login successfull");
       console.log(response);
-      router.push("/Feed");
-    } catch (error: any) {
-      console.error("login failed");
-      console.error(error.response);
-
+      router.push("/Home");}
       
-    }
-  }
-
+      catch (error: any) {
+      console.log("Failed to login", error)
+     }} 
   return (
     <div className={styles.screen}>
       <div className={styles.card}>
@@ -67,7 +64,8 @@ function Loginform() {
       </form>
       <p className={styles.label}>Don't have an account?</p>
        <a className={styles.link} href="/">Sign up</a>
-      </div>
+     </div>
+     {errormessage && <p className={styles.errormessage}>{errormessage}</p>}
     </div>
   );
 }

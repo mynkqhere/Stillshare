@@ -20,4 +20,4 @@ res.status(201).json({Message: "User Fetched Successfully", user})
 }
 
 
-module.exports = {CreateProfile, GetProfile};
+module.exports = {CreateProfile, GetProfile,};

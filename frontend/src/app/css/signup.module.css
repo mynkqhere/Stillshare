@@ -51,3 +51,35 @@
 .label{
     font-size: small;
 }
+.footer{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 9px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.flink{
+  text-decoration: none;
+  color: white;
+
+}
+.errormessage{
+    color: red;
+    text-align: center;
+    font-size: small;
+}
+.postcard{
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    color: white;
+
+}
+.Feed{
+    background-color: black;
+    padding: 15px;
+}

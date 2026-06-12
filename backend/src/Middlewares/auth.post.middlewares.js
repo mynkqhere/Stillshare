@@ -18,4 +18,3 @@ console.log("id of the user who made the post", req.user) // for testing purpose
 }
 module.exports = {Auth};
 
-// i need to get the decoded id and make it useable 

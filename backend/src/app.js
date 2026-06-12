@@ -5,8 +5,15 @@ const postRoute = require("./routes/post.routes");
 const authRoute = require('./routes/auth.route');
 const express = require('express');
 const app = express();
+
+// CORS configuration to allow both PC and mobile access on local network
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    'http://172.16.2.38:3000',
+];
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: allowedOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],

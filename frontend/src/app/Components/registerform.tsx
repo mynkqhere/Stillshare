@@ -26,7 +26,7 @@ const loginResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/a
 email: registerformData.get("email"),
 password: registerformData.get("password"),
 }, {withCredentials: true});
-router.push("/Feed");
+router.push("/Home");
 }
 catch (error: any) {
 // catch 
@@ -46,7 +46,7 @@ return (
 </form>
 <p className={styles.label}>Already have an account?</p>
 <a className={styles.link} href="/login">login</a>
-{errormessage && <p>{errormessage}</p>}
+{errormessage && <p className={styles.errormessage}>{errormessage}</p>}
 </div>
 </div>
 );
