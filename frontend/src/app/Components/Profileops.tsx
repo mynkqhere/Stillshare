@@ -12,7 +12,7 @@ function ProfileOperation(){
             const Data = response.data
              console.log(Data)
             setProfiledata(Data)
-        }catch(error){console.error("something went wrong:",error.response.data.Message)}
+        }catch(error: any ){console.error("something went wrong:", (error as any) ,error?.response?.data?.Message)}
     }
 useEffect(() => {FetchProfile()}, []) // run when component mounts
 
