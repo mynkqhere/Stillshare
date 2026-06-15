@@ -10,9 +10,9 @@ function ProfileOperation(){
             const userid = localStorage.getItem("userid") // user id in localstorage
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/Profile/get-user/${userid}`)
             const Data = response.data
-            console.log(Data)
+             console.log(Data)
             setProfiledata(Data)
-        }catch(error:any){console.error("something went wrong:",error.response.data.Message)}
+        }catch(error){console.error("something went wrong:",error.response.data.Message)}
     }
 useEffect(() => {FetchProfile()}, []) // run when component mounts
 
