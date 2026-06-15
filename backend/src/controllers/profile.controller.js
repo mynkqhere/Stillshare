@@ -14,7 +14,7 @@ res.status(201).json({Message: "Profile Created successfully", profile})
 }
 async function GetProfile(req, res){
 const ID = req.params.id
-const user = await ProfileModel.findById(ID).populate("User")
+const user = await ProfileModel.findOne({User: ID}).populate("User")
 if(!user){return res.status(400).json({Message: "User not found"})}
 res.status(201).json({Message: "User Fetched Successfully", user})
 }
