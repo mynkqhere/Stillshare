@@ -24,6 +24,10 @@ async function Register(req, res){
     const token = jwt.sign({id: registeruser._id,}, process.env.Jwt_Secret);
     
     res.cookie("token", token,{
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        maxAge:  7 * 24 * 60 * 60 * 1000 
         
     })
     res.status(201).json({Message: "User registerd!"})
@@ -45,6 +49,10 @@ const verify = await bcrypt.compare(password, isuserexists.Password)
 if(!verify){return res.status(401).json({Message: "Invalid Credentials"})};
 const token = jwt.sign({id: isuserexists._id}, process.env.Jwt_Secret);
 res.cookie("token", token,{
+httpOnly: true,
+secure: true,
+sameSite: "None",
+maxAge:  7 * 24 * 60 * 60 * 1000 
    
 })
 res.status(201).json({Message: "User Login successfully!", Userid: `${isuserexists._id}`
@@ -56,7 +64,10 @@ res.status(201).json({Message: "User Login successfully!", Userid: `${isuserexis
 }
 
 async function Logout(req, res){
-res.clearCookie("token");
+res.clearCookie("token",{
+    httpOnly: true,
+    secure: true,
+    sameSite: "None"});
 res.status(201).json({Message: "User Logged out."})
 }
 module.exports = {Register, Login, Logout};
