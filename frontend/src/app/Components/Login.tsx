@@ -21,8 +21,7 @@ async function handlesubmit(e: any) {
         },
         { withCredentials: true },
       );
-      console.log("login successfull");
-      console.log(response);
+          localStorage.setItem("userid", response.data.Userid) // seting user id inside localstorage
       router.push("/Home");}
       
       catch (error: any) {
