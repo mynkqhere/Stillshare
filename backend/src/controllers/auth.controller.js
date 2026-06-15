@@ -47,7 +47,9 @@ const token = jwt.sign({id: isuserexists._id}, process.env.Jwt_Secret);
 res.cookie("token", token,{
    
 })
-res.status(201).json({Message: "User Login successfully!"})
+res.status(201).json({Message: "User Login successfully!", Userid: `${isuserexists._id}`
+  
+ })
 
 
 
