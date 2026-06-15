@@ -1,8 +1,9 @@
-import Footer from "../Components/footer";
+import ProfileOperation from "../Components/Profileops";
 
 function Profile(){
     return(<div>
-        <Footer/>
-    </div>)
+        This is Profile Location
+        <ProfileOperation/>
+        </div>)
 }
 export default Profile;
