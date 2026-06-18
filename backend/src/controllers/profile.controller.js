@@ -40,5 +40,12 @@ const updatename = await ProfileModel.findByIdAndUpdate(ID, {
 })
 res.status(201).json({Message: "Name Updated succesfully"})
 }
-
-module.exports = {CreateProfile, GetProfile, Changeprofilepicture, Changename}
+async function Changebio(req, res){
+const ID = req.params.id
+const Bio = req.body.bio
+const updatebio = await ProfileModel.findByIdAndUpdate(ID,{
+    Bio: Bio
+})
+res.status(201).json({Message: "Successfully Updated Bio"})
+}
+module.exports = {CreateProfile, GetProfile, Changeprofilepicture, Changename, Changebio}
