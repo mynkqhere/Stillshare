@@ -85,4 +85,22 @@ const updateusername = await UserModel.findByIdAndUpdate(ID,{
 
 res.status(201).json({Message: "Updated Username"})
 }
-module.exports = {Register, Login, Logout, Changeusername};
+async function Changeemail(req, res){
+    const ID = req.params.id
+    const email = req.body.email
+    const updateemail = await UserModel.findByIdAndUpdate(ID,{
+        Email: email
+    })
+    res.status(201).json({Message: "Email Updated",})
+}
+async function Changepassword(req, res){
+const ID = req.params.id
+const password = req.body.password
+const updatedpassword = await bcrypt.hash(password, 10)
+const updatepassword = await UserModel.findByIdAndUpdate(ID,{
+    Password: updatedpassword
+})
+res.status(201).json({Message: "Updated password"})
+}
+
+module.exports = {Register, Login, Logout, Changeusername, Changeemail, Changepassword};
