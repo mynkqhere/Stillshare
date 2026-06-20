@@ -5,10 +5,10 @@ function Editprofileops(){
     const [username, setUsername] = useState("")
     const [name, setName] = useState("")
     const [bio, setBio] = useState("")
-    const [pfp, setPfp] = useState()
+    const [profilepicture, setProfilepicture] = useState(null)
 function handlechangefile(e: any){
-    const profilepicture = e.target.files[0]
-    setPfp(profilepicture);
+    const file = e.target.files[0] // actual file
+    setProfilepicture(file) 
 }     
 
 async function handlesubmit(e: any){
@@ -33,12 +33,21 @@ async function handlesubmit(e: any){
         const response3 = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/change-name/${Userid}`, payload3, {withCredentials: true})
         console.log("Successfully changed name:", response3)
     }catch(error){console.error("Failed to change name:", error)}
+    // to change profile picture
+    try{
+        const imagedata = new FormData()
+        if(profilepicture){
+            imagedata.append("Profilepicture", profilepicture)
+        }else(console.log("No profile picture is set"))
 
+     const response4 = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/change-profilepicture/${Userid}`,imagedata, {withCredentials: true})
+     console.log("successfully changed profile picture", response4);
+    }catch(error){console.error("Failed to change profile picture", error)}
 }
 
     return(<div>
         <form onSubmit={handlesubmit}>
-            <input type="file" name="pfp" accept="image/png" onChange={handlechangefile}/>
+            <input type="file" name="profilepicture" accept="image/png" onChange={handlechangefile}/>
             <input type="text" name="name" placeholder="Name" value={name} onChange={((e)=>(setName(e.target.value)))} /> 
             <input type="text" name="username" placeholder="Username" value={username} onChange={((e)=>(setUsername(e.target.value)))} />
             <input type="text" name="bio" placeholder="Bio" value={bio} onChange={((e)=>(setBio(e.target.value)))} />
