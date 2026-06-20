@@ -18,6 +18,7 @@ res.status(201).json({Message: "Profile Created successfully", profile})
 }
 async function GetProfile(req, res){
 const ID = req.params.id
+console.log("id from localstorage:",ID)
 const user = await ProfileModel.findOne({User: ID}).populate("User")
 if(!user){return res.status(400).json({Message: "User not found"})}
 res.status(201).json({Message: "User Fetched Successfully", user})
@@ -34,18 +35,25 @@ res.status(201).json({Message: "Profile Picture Updated Successfully"})
 }
 async function Changename(req, res){
 const ID = req.params.id
-const Name = req.body.name
-const updatename = await ProfileModel.findByIdAndUpdate(ID, {
-    Name: Name
-})
+const Namevalue = req.body.name
+const updatename = await ProfileModel.findOneAndUpdate(
+    {User: ID},
+    {Name: Namevalue},
+    
+)
 res.status(201).json({Message: "Name Updated succesfully"})
 }
 async function Changebio(req, res){
 const ID = req.params.id
+console.log(ID)
 const Bio = req.body.bio
-const updatebio = await ProfileModel.findByIdAndUpdate(ID,{
-    Bio: Bio
-})
+console.log(Bio)
+const updatebio = await ProfileModel.findOneAndUpdate(
+    {User: ID},
+    {Bio: Bio},
+    {new: true}
+) // problem is here
+console.log(updatebio)
 res.status(201).json({Message: "Successfully Updated Bio"})
 }
 module.exports = {CreateProfile, GetProfile, Changeprofilepicture, Changename, Changebio}
