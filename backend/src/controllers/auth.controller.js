@@ -2,11 +2,12 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const UserModel = require("../models/user.model");
 async function Register(req, res){
-    console.log("Request Recieved", req.body) // testing purpose
     const username = req.body.username; 
     const email = req.body.email;
     const password = req.body.password;
-    console.log(username, email, password) // testing purpose
+    if(!username || username.trim() ===""){return res.status(401).json({Message: "Username is required"})};
+    if(!password || password.trim()===""){return res.status(401).json({Message: "Password is required"})};
+    if(!email || email.trim()===""){return res.status(401).json({Message: "Email is required"})};
     const isusernametaken = await UserModel.findOne({Username: username})
     if(isusernametaken){return res.status(401).json({Message: "Username is taken"})}
     const isemailtaken = await UserModel.findOne({Email: email})
@@ -40,7 +41,10 @@ async function Login(req, res){
 const username = req.body.username
 const password = req.body.password;
 const email = req.body.email;
-
+if(!username || username.trim()===""){return res.status(401).json({Message: "Username is required"})};
+if(!password || password.trim()===""){return res.status(401).json({Message: "Password is required"});
+if(!email || email.trim()===""){return res.status(401).json({Message: "Email is required"})}
+}
 
 const isuserexists = await UserModel.findOne({
     $or:[{Username: username},{Email: email}]
@@ -76,9 +80,9 @@ async function Changeusername(req, res){
 const ID = req.params.id 
 console.log(ID)
 const username = req.body.username
-console.log(username)
+if(!username || username.trim()===""){return res.status(401).json({Message: "Username is required"})};
 const isusernameexists = await UserModel.findOne({Username: username})
-if (isusernameexists){return res.status(401).json({Message: "Username is taken please select another"})}
+if (isusernameexists){return res.status(401).json({Message: "Username is taken"})}
 
 const updateusername = await UserModel.findByIdAndUpdate(ID,{
     Username: username
@@ -89,6 +93,7 @@ res.status(201).json({Message: "Updated Username"})
 async function Changeemail(req, res){
     const ID = req.params.id
     const email = req.body.email
+    if(!email || email.trim()===""){return res.status(401).json({Message: "Email is required"})}
     const updateemail = await UserModel.findByIdAndUpdate(ID,{
         Email: email
     })
@@ -97,6 +102,7 @@ async function Changeemail(req, res){
 async function Changepassword(req, res){
 const ID = req.params.id
 const password = req.body.password
+if(!password || password.trim()===""){ return res.status(401).json({Message: "Password is required"})}
 const updatedpassword = await bcrypt.hash(password, 10)
 const updatepassword = await UserModel.findByIdAndUpdate(ID,{
     Password: updatedpassword
