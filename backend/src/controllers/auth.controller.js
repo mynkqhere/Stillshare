@@ -41,6 +41,7 @@ const username = req.body.username
 const password = req.body.password;
 const email = req.body.email;
 
+
 const isuserexists = await UserModel.findOne({
     $or:[{Username: username},{Email: email}]
 })
