@@ -14,11 +14,11 @@ function handlechangefile(e: any){
 async function handlesubmit(e: any){
     e.preventDefault()
     // to change username
-    const usernamedata =  new FormData()
+    const payload = {username: username}
+    console.log(payload)
     const Userid =  localStorage.getItem("userid")
-    usernamedata.append("username", username)
     try{
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/change-username/${Userid}`,usernamedata, {withCredentials: true})
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/change-username/${Userid}`,payload, {withCredentials: true})
     console.log("SUCCESSFULLY CHANGED USERNAME",response)
     }catch(error:any){console.log("Failed to change username:",error?.response)};
     
