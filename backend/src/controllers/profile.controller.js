@@ -28,9 +28,7 @@ const ID = req.params.id
 const Buffer = req.file.buffer;
 const fileName = req.file.originalname
 const result = await Upload(Buffer, fileName)
-const updatedprofilepicture = await ProfileModel.findByIdAndUpdate(ID,{
-    Profilepicture: result.url
-})
+const updatedprofilepicture = await ProfileModel.findOneAndUpdate({User: ID},{Profilepicture: result.url})
 res.status(201).json({Message: "Profile Picture Updated Successfully"})
 }
 async function Changename(req, res){

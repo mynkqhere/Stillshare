@@ -33,7 +33,7 @@ useEffect(() => {FetchProfile()}, []) // run when component mounts
 
 return(<div>
     <ProfileCard username={profiledata?.user?.User?.Username} image={profiledata?.user?.Profilepicture} name={profiledata?.user?.Name} bio={profiledata?.user?.Bio} />
-{postdata.map((posts)=>(<PostCard key={posts._id} username={posts.User.Username} post={posts.Post} />))}
+{postdata.map((posts: any)=>(<PostCard key={posts._id} username={posts.User.Username} post={posts.Post} />))}
 
 </div>)
 }

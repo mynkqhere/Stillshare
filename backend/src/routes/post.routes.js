@@ -7,4 +7,5 @@ const router = express.Router();
 const upload = multer({storage: multer.memoryStorage()});
 router.post('/create-post', authpostMiddleware.Auth, upload.single("Post"), postController.Post);
 router.get('/', authpostMiddleware.Auth,postController.GetPosts);
+router.get('/get-post/:id', postController.Getpostbyid)
 module.exports = router;

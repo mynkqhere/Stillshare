@@ -26,7 +26,6 @@ async function GetPosts(req, res){ // need work here
 async function Getpostbyid(req, res){
     try{
     const ID = req.params.id
-    if(!ID){ return res.status(400).json({Message: "Unauthorized"})} 
     console.log(ID)
     const Post = await PostModel.find({User: ID}).populate("User", "Username")
     if(!Post){return res.status(401).json({Message: "No post found"})}

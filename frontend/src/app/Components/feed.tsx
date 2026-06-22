@@ -11,7 +11,7 @@ console.log(response.data.posts)
 const successmsg = response.data.Message
 setPosts(response.data.posts)
 } catch (error: any) {
-console.error("Failed to Fetch Posts", error)
+console.error("Failed to Fetch Posts", error.response)
 }
 }
 useEffect(() => {
