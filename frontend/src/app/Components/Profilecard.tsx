@@ -6,6 +6,7 @@ function ProfileCard(props: any){
     return(<div className={style.container} >
         <div className={style.items}>
         <span className={style.text} >{props.username}</span>
+        <span onClick={()=> router.push("/create")}>+</span>
         <div className={style.pfp}><img className={style.image} src={props.image} alt={props.image} /></div>
         <span className={style.text} >{props.name}</span>
         <span className={style.text} >{props.bio}</span>
