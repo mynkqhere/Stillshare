@@ -3,7 +3,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ProfileCard from "./Profilecard";
+import PostCard from "./postcard";
 function ProfileOperation(){
+    const [postdata, setpostdata] = useState([])
     const [profiledata, setProfiledata] = useState({})
     async function FetchProfile(){
         try{
@@ -13,11 +15,26 @@ function ProfileOperation(){
              console.log(Data)
             setProfiledata(Data)
         }catch(error: any ){console.error("something went wrong:", (error as any) ,error?.response?.data?.Message)}
+        // fetching posts of the user
+        try{
+            const userid = localStorage.getItem("userid")
+            console.log(userid,"got user id")
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/post/get-post/${userid}`)
+            console.log("Fetched the post of this user:", response.data)
+            const object = response.data.Post
+            const postusername = response.data.Post[0].User.Username // required
+            const postcaption =  response.data.Post[0].Caption // required
+            const post =  response.data.Post[0].Post // required // how do i deal with this type of data 
+            setpostdata(object)
+            console.log(object)
+        }catch(error){console.error("failed to fetch posts", error)}
     }
 useEffect(() => {FetchProfile()}, []) // run when component mounts
 
 return(<div>
     <ProfileCard username={profiledata?.user?.User?.Username} image={profiledata?.user?.Profilepicture} name={profiledata?.user?.Name} bio={profiledata?.user?.Bio} />
+{postdata.map((posts)=>(<PostCard key={posts._id} username={posts.User.Username} post={posts.Post} />))}
+
 </div>)
 }
 export default ProfileOperation;
