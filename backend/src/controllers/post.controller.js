@@ -23,5 +23,17 @@ async function GetPosts(req, res){ // need work here
     const posts = await PostModel.find().populate("User", "Username Email")
     res.status(201).json({Message: "Posts Fetched Successfully!", posts})
 }
-module.exports = {Post, GetPosts};
+async function Getpostbyid(req, res){
+    try{
+    const ID = req.params.id
+    if(!ID){ return res.status(400).json({Message: "Unauthorized"})} 
+    console.log(ID)
+    const Post = await PostModel.find({User: ID}).populate("User", "Username")
+    if(!Post){return res.status(401).json({Message: "No post found"})}
+    console.log(Post)
+    res.status(201).json({Message: "Successfuly fetched posts", Post})
+    }catch(error){console.error("Failed to fetch post", error)}
+    
+}
+module.exports = {Post, GetPosts, Getpostbyid};
 
