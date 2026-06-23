@@ -8,4 +8,5 @@ const upload = multer({storage: multer.memoryStorage()});
 router.post('/create-post', authpostMiddleware.Auth, upload.single("Post"), postController.Post);
 router.get('/', authpostMiddleware.Auth,postController.GetPosts);
 router.get('/get-post/:id', postController.Getpostbyid)
+router.delete('/delete-post/:id', postController.Deletepost)
 module.exports = router;
