@@ -54,4 +54,11 @@ const updatebio = await ProfileModel.findOneAndUpdate(
 console.log(updatebio)
 res.status(201).json({Message: "Successfully Updated Bio"})
 }
-module.exports = {CreateProfile, GetProfile, Changeprofilepicture, Changename, Changebio}
+async function Searchprofile(req, res){
+    const Username = req.params.user
+    console.log(Username)
+    const profile = await ProfileModel.find({Name: Username}).populate("User")
+    res.status(201).json({Message: "Fetched", profile})
+}
+
+module.exports = {CreateProfile, GetProfile, Changeprofilepicture, Changename, Changebio, Searchprofile}
