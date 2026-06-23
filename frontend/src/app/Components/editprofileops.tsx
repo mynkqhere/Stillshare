@@ -15,6 +15,7 @@ async function handlesubmit(e: any){
     e.preventDefault()
     // to change username
     const payload = {username: username}
+    if(!username || username.trim()===""){return console.log("not moving forward empty username")}
     console.log(payload)
     const Userid =  localStorage.getItem("userid")
     try{
