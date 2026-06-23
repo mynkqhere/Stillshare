@@ -16,6 +16,8 @@ async function fetchuserprofile(){
             const Namedata = response.data.profile[0].Name
             const Bio = response.data.profile[0].Bio
             const Username = response.data.profile[0].User.Username
+            const Userid = response.data.profile[0].User._id
+            console.log(Userid)// getting user id of the user 
 
 
         }catch(error){console.error("something went wrong", error)}
@@ -26,7 +28,7 @@ useEffect(() => {fetchuserprofile()}, [Name])
         
             <input type="text" name="search" placeholder="Search profile" value={Name} onChange={(e)=> setName(e.target.value)}/>
         {Profiledata.map((data)=>(
-        <SearchCard key={data._id} username={data?.User?.Username} pfp={data?.Profilepicture} name={data.Name} />
+        <SearchCard key={data._id} username={data?.User?.Username} pfp={data?.Profilepicture} name={data.Name} userid={data?.User?._id} />
         ))}
     </div>)
 }
