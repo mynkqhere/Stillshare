@@ -1,4 +1,5 @@
 const  Upload = require("../services/storage.service")
+const ProfileModel = require('../models/profile.model');
 const PostModel = require('../models/post.model')
 async function Post(req, res){
 console.log(req.body); // for testing purpose
@@ -39,10 +40,7 @@ async function Deletepost(req, res){
     console.log(ID)
     const Deletepost = await PostModel.findByIdAndDelete({_id: ID})
     res.status(201).json({Message: "Post deleted successfully"})
-}catch(error){console.error("something went wrong while deleting the post", error)}
-   
-
-}
+}catch(error){console.error("something went wrong while deleting the post", error)}}
 
 module.exports = {Post, GetPosts, Getpostbyid, Deletepost};
 
