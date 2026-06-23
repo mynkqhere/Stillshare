@@ -1,7 +1,9 @@
 "use client";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useState } from "react";
 function Editprofileops(){
+    const router = useRouter()
     const [username, setUsername] = useState("")
     const [name, setName] = useState("")
     const [bio, setBio] = useState("")
@@ -21,18 +23,21 @@ async function handlesubmit(e: any){
     try{
     const response1 = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/change-username/${Userid}`,payload, {withCredentials: true})
     console.log("SUCCESSFULLY CHANGED USERNAME",response1)
+    router.push("/profile")
     }catch(error:any){console.log("Failed to change username:",error?.response)};
     // to change bio
     try{
     const payload2 = {bio: bio} 
     const response2 = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/change-bio/${Userid}`, payload2, {withCredentials: true})
     console.log("Successfully changed bio:", response2)
+    router.push("/profile")
     }catch(error){console.error("Failed to change bio", error)};
     // to change name
     try{
         const payload3 = {name: name}
         const response3 = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/change-name/${Userid}`, payload3, {withCredentials: true})
         console.log("Successfully changed name:", response3)
+        router.push("/profile")
     }catch(error){console.error("Failed to change name:", error)}
     // to change profile picture
     try{
@@ -43,6 +48,7 @@ async function handlesubmit(e: any){
 
      const response4 = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/change-profilepicture/${Userid}`,imagedata, {withCredentials: true})
      console.log("successfully changed profile picture", response4);
+     router.push("/profile")
     }catch(error){console.error("Failed to change profile picture", error)}
 }
 
