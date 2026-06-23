@@ -20,7 +20,10 @@ fetchposts();
 return (
 <div>
 {posts.map((file: any) => (
-<PostCard key={file._id} post={file.Post} username={file.User.Username} caption={file.Caption}/>
+
+<PostCard key={file._id} post={file.Post} username={file.User.Username} caption={file.Caption}
+ postid={file._id} /> 
+
 ))}
 </div>
 );
