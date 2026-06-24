@@ -9,7 +9,7 @@ function SearchCard(props: any){
         console.log(ID)
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/get-user/${ID}`)
         console.log("Successfully fetched user profile", response)
-      router.push('/userprofile')
+      router.push(`/userprofile/${ID}`)
         
 
     }catch(error){console.log("Failed to fetch user profile", error)}

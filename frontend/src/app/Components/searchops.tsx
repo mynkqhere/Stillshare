@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useState,useEffect, } from "react";
+import UserProfileOps from "./user-profileops";
 import SearchCard from "../Components/searchcard";
 function Searchops(){
 const [Name, setName] = useState("")
@@ -10,19 +11,12 @@ async function fetchuserprofile(){
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/${Name}`)
             console.log("user fetched successfully",response.data.profile)
             const data = response.data.profile
-            setProfiledata(data)
-            console.log(response.data.profile[0].User.Username)
-            const profilepicture = response.data.profile[0].Profilepicture
-            const Namedata = response.data.profile[0].Name
-            const Bio = response.data.profile[0].Bio
-            const Username = response.data.profile[0].User.Username
-            const Userid = response.data.profile[0].User._id
-            console.log(Userid)// getting user id of the user 
+            setProfiledata(data) 
+            UserProfileOps(data)
+            }catch(error){console.error("something went wrong", error)}
+            }
 
-
-        }catch(error){console.error("something went wrong", error)}
-    }
-useEffect(() => {fetchuserprofile()}, [Name])
+            useEffect(() => {fetchuserprofile()}, [Name])
 
     return(<div>
         
