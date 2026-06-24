@@ -1,4 +1,4 @@
-import UserProfileOps from "../../Components/user-profileops";
+import UserProfileOps from "../../../Components/user-profileops";
 function UserProfile(){
     return(<div>
         <UserProfileOps/>

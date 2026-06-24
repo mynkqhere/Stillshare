@@ -1,7 +1,8 @@
-import RegisterForm from "./Components/registerform";
+import Signup from "./auth/signup/page";
+
 function Home(){
   return(<div>
-    <RegisterForm/>
+   <Signup/> 
   </div>);
 }
 export default Home;

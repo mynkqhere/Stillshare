@@ -1,4 +1,4 @@
-import Editprofileops from "../Components/editprofileops";
+import Editprofileops from "../../Components/editprofileops";
 
 function Editprofile(){
     return(<div>Edit profile page

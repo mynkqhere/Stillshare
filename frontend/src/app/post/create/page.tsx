@@ -1,4 +1,4 @@
-import Createops from "../Components/createops";
+import Createops from "../../Components/createops";
 
 function Create(){
     return(<div>Create Post

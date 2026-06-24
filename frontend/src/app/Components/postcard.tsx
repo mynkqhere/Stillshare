@@ -1,5 +1,5 @@
 import axios from "axios";
-import styles from "../css/signup.module.css"
+import styles from "../CSS/signup.module.css"
 function PostCard(props: any){
     async function handledelete(postid: any){
         try{

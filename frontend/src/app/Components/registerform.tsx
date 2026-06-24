@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import styles from "../css/signup.module.css";
+import styles from "../CSS/signup.module.css";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 function RegisterForm() {
@@ -26,7 +26,7 @@ const loginResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/a
 email: registerformData.get("email"),
 password: registerformData.get("password"),
 }, {withCredentials: true});
-router.push("/Home");
+router.push("/home/feed");
 }
 catch (error: any) {
 // catch 
@@ -45,7 +45,7 @@ return (
 <button className={styles.submit} type="submit">Sign up</button>
 </form>
 <p className={styles.label}>Already have an account?</p>
-<a className={styles.link} href="/login">login</a>
+<a className={styles.link} href="/auth/login">login</a>
 {errormessage && <p className={styles.errormessage}>{errormessage}</p>}
 </div>
 </div>

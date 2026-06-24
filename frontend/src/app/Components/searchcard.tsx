@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation"
 import axios from "axios"
-import style from "../css/Search.module.css"
+import style from "../CSS/Search.module.css"
 function SearchCard(props: any){
     const router = useRouter()
     async function handleprofileclick(userid:any){
@@ -9,7 +9,7 @@ function SearchCard(props: any){
         console.log(ID)
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/get-user/${ID}`)
         console.log("Successfully fetched user profile", response)
-      router.push(`/userprofile/${ID}`)
+      router.push(`/profile/userprofile/${ID}`)
         
 
     }catch(error){console.log("Failed to fetch user profile", error)}

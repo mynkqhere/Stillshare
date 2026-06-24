@@ -1,5 +1,4 @@
-import Loginform from "../Components/Login";
-
+import Loginform from "../../Components/Login";
 function Login(){
     return(<div>
         <Loginform/>

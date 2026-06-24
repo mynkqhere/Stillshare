@@ -19,7 +19,7 @@ const [Userdata, setUserdata] = useState([])
     useEffect(() => {fetchprofile()}, [])
     
     return(<div>
-        <ProfileCard username={Userdata?.User?.Username} name={Userdata?.Name} bio={Userdata.Bio} image={Userdata?.Profilepicture} button2="Follow" onbutton2click={()=> console.log("Clicked follow")} />
+        <ProfileCard username={Userdata?.User?.Username} name={Userdata?.Name} bio={Userdata.Bio} image={Userdata?.Profilepicture} button2="Follow" onbutton2click={()=> console.log("Clicked follow")}  />
     </div>)
 }
 export default UserProfileOps;

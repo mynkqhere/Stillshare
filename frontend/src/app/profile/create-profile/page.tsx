@@ -1,4 +1,4 @@
-import CreateProfileOPS from "../Components/create-profile";
+import CreateProfileOPS from "../../Components/create-profile";
 
 function CreateProfile(){
     return(<div>

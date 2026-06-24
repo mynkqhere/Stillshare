@@ -1,6 +1,6 @@
 // here i am going to write the component of profilecard 
 import { useRouter } from "next/navigation";
-import style from "../css/Profile.module.css"
+import style from "../CSS/Profile.module.css"
 function ProfileCard(props: any){
     const router = useRouter()
     return(<div className={style.container} >

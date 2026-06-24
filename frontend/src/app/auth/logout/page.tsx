@@ -1,4 +1,4 @@
-import LogoutComponent from "../Components/logout"
+import LogoutComponent from "../../Components/logout"
 function logout(){
     return(<div><LogoutComponent/></div>)
 }

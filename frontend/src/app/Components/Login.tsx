@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import styles from "../css/signup.module.css";
+import styles from "../CSS/signup.module.css";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 function Loginform() {
@@ -22,7 +22,7 @@ async function handlesubmit(e: any) {
         { withCredentials: true },
       );
           localStorage.setItem("userid", response.data.Userid) // seting user id inside localstorage
-      router.push("/Home");}
+      router.push("/home/feed");}
       
       catch (error: any) {
       console.log("Failed to login", error)

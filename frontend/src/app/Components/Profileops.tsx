@@ -34,7 +34,7 @@ function ProfileOperation(){
 useEffect(() => {FetchProfile()}, []) // run when component mounts
 
 return(<div>
-    <ProfileCard username={profiledata?.user?.User?.Username} image={profiledata?.user?.Profilepicture} name={profiledata?.user?.Name} bio={profiledata?.user?.Bio} button2="Edit Profile" onbutton2click={()=> router.push("/edit-profile")} button1="Create" onbutton1click={()=> router.push("/create-profile")}/>
+    <ProfileCard username={profiledata?.user?.User?.Username} image={profiledata?.user?.Profilepicture} name={profiledata?.user?.Name} bio={profiledata?.user?.Bio} button2="Edit Profile" onbutton2click={()=> router.push("/profile/edit-profile")} button1="Create" onbutton1click={()=> router.push("/post/create")}/>
 {postdata.map((posts: any)=>(<PostCard key={posts._id} username={posts.User.Username} post={posts.Post} />))}
 
 </div>)

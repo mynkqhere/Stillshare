@@ -63,11 +63,3 @@ async function handlesubmit(e: any){
     </div>)
 }
 export default Editprofileops;
-
-// i want to track the inputs so that when user click on save only the final data goes, 
-// plus ive made differernt apis for specifc inputs here on backend to update the details 
-// i need to know how to track the file using usestate  
-// When save is clicked we will have to validate if post request is successfull if so then we will push users back to the profile page so they get new profile to view of theirs.
-
-// i need to track what file is selected and then set it inside variable 
-//if i append all the final inputs inside the formdata but my backend only expects single input like username, name, profilepicture and bio and i have 4 of them to upgrade or to create the previous resource i can create a async function to handle form submition where i can  run 4 post requests to different endpoints sequencely. 

@@ -1,10 +1,10 @@
-import Footer from "../Components/footer";
-import ProfileOperation from "../Components/Profileops";
+import Footer from "../Components/footer"
+import ProfileOperation from "../Components/Profileops"
 
 function Profile(){
     return(<div>
         <ProfileOperation/>
         <Footer/>
-        </div>)
+    </div>)
 }
-export default Profile;
+export default Profile
