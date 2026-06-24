@@ -6,11 +6,11 @@ function ProfileCard(props: any){
     return(<div className={style.container} >
         <div className={style.items}>
         <span className={style.text} >{props.username}</span>
-        <span onClick={()=> router.push("/create")}>+</span>
+        <span onClick={props.onbutton2}>{props.button1}</span>
         <div className={style.pfp}><img className={style.image} src={props.image} alt={props.image} /></div>
         <span className={style.text} >{props.name}</span>
         <span className={style.text} >{props.bio}</span>
-        <button onClick={()=> router.push("/edit-profile")}>Edit Profile</button>
+        <button onClick={props.onbutton2click}>{props.button2}</button>
         <button>Message</button>
          </div>
     </div>)
