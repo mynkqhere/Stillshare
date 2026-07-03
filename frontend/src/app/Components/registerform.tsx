@@ -23,6 +23,7 @@ console.log(response.data.Message) // success message for signup
 setSuccessMessage(response.data.Message); // set success message
 // automatically login users and giving them session.
 const loginResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
+username: registerformData.get("username"),
 email: registerformData.get("email"),
 password: registerformData.get("password"),
 }, {withCredentials: true});
