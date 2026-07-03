@@ -29,6 +29,8 @@ const Buffer = req.file.buffer;
 const fileName = req.file.originalname
 const result = await Upload(Buffer, fileName)
 const updatedprofilepicture = await ProfileModel.findOneAndUpdate({User: ID},{Profilepicture: result.url})
+
+
 res.status(201).json({Message: "Profile Picture Updated Successfully"})
 }
 async function Changename(req, res){
@@ -49,7 +51,6 @@ console.log(Bio)
 const updatebio = await ProfileModel.findOneAndUpdate(
     {User: ID},
     {Bio: Bio},
-    {new: true}
 ) // problem is here
 console.log(updatebio)
 res.status(201).json({Message: "Successfully Updated Bio"})
