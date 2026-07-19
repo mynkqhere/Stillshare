@@ -8,8 +8,7 @@ const app = express();
 
 // CORS configuration to allow both PC and mobile access on local network
 const allowedOrigins = [
-    process.env.FRONTEND_URL,
-    'http://172.16.2.38:3000',
+    process.env.frontend_url || "http://localhost:3000" // frontend url to access the backend in environment variable for easy change. if url was set it will use that otherwise it will use default localhost one. 
 ];
 
 app.use(cors({
