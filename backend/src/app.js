@@ -8,7 +8,7 @@ const app = express();
 
 // CORS configuration to allow both PC and mobile access on local network
 const allowedOrigins = [
-    process.env.frontend_url || "http://localhost:3000" // frontend url to access the backend in environment variable for easy change. if url was set it will use that otherwise it will use default localhost one. 
+    process.env.frontend_url || "https://stillshare.vercel.app/" // i hardcoded the frontend url now i dont need to add env on render i will add env here for dev 
 ];
 
 app.use(cors({
