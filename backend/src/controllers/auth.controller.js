@@ -1,3 +1,4 @@
+const {findbyusername, findbyemail, createuser} = require("../models/postgresql.user.modle");
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const UserModel = require("../models/user.model");
@@ -8,21 +9,21 @@ async function Register(req, res){
     if(!username || username.trim() ===""){return res.status(401).json({Message: "Username is required"})};
     if(!password || password.trim()===""){return res.status(401).json({Message: "Password is required"})};
     if(!email || email.trim()===""){return res.status(401).json({Message: "Email is required"})};
-    const isusernametaken = await UserModel.findOne({Username: username})
+    
+    // sql model to check if username exists in database
+    const isusernametaken = await findbyusername(username) // passint username to sql model to check if username exists in database
     if(isusernametaken){return res.status(401).json({Message: "Username is taken"})}
-    const isemailtaken = await UserModel.findOne({Email: email})
+    
+    // sql model to check if email exists in database
+    const isemailtaken = await findbyemail(email)
     if(isemailtaken){return res.status(401).json({Message: "Email taken,"})}
     
     const hashedpassword = await bcrypt.hash(password, 10);
-    const registeruser = await UserModel.create({
-        Username: username,
-        Email: email,
-        Password: hashedpassword,
-
-     })
+    const registeruser = await createuser(username, email, hashedpassword)
+    console.log(registeruser)
 
     
-    const token = jwt.sign({id: registeruser._id,}, process.env.Jwt_Secret);
+    const token = jwt.sign({id: registeruser.id,}, process.env.Jwt_Secret);
     
     res.cookie("token", token,{
         // httpOnly: true,
@@ -46,9 +47,7 @@ if(!password || password.trim()===""){return res.status(401).json({Message: "Pas
 if(!email || email.trim()===""){return res.status(401).json({Message: "Email is required"})}
 }
 
-const isuserexists = await UserModel.findOne({
-    $or:[{Username: username},{Email: email}]
-})
+const isuserexists = await findbyusername(username) || await findbyemail(email)
 if(!isuserexists){return res.status(401).json({Message: " user is not registerd."})};
 const verify = await bcrypt.compare(password, isuserexists.Password)
 if(!verify){return res.status(401).json({Message: "Invalid Credentials"})};
