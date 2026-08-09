@@ -6,16 +6,10 @@ const authRoute = require('./routes/auth.route');
 const express = require('express');
 const app = express();
 
-// CORS configuration to allow both PC and mobile access on local network
-const allowedOrigins = [
-    process.env.frontend_url || "https://stillshare.vercel.app/" // i hardcoded the frontend url now i dont need to add env on render i will add env here for dev 
-];
-
+// CORS configuration for the deployed frontend
 app.use(cors({
-    origin: allowedOrigins,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: process.env.frontend_url || "https://stillshare.vercel.app",
+    credentials: true
 }));
 app.use(express.json());
 app.use(cookieparser());
