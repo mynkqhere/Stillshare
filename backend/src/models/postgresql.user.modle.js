@@ -14,6 +14,9 @@ async function createuser(username, email, hashedpassword){
     const result = await pool.query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING * ', [username, email, hashedpassword] )
     return result.rows[0]
 }
-module.exports = {findbyusername, findbyemail, createuser}
-
-// we are taking the username, email and password from the controller and passing it to the sql model which will put this values to the column name that we have created in the database we will tell in the query in which column name we want to put these values. we can also cheak in our database the correct name of the column.
+async function changeusername(Id, newusername){
+    // running sql query to change username 
+    const result = await pool.query('SELECT * FROM users')
+    return result.rows[0] 
+}
+module.exports = {findbyusername, findbyemail, createuser, changeusername}
