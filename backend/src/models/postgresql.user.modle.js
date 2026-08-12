@@ -16,7 +16,7 @@ async function createuser(username, email, hashedpassword){
 }
 async function changeusername(Id, newusername){
     // running sql query to change username 
-    const result = await pool.query('SELECT * FROM users')
+    const result = await pool.query('UPDATE users SET username=$2 WHERE id=$1', [Id, newusername])
     return result.rows[0] 
 }
 module.exports = {findbyusername, findbyemail, createuser, changeusername}
