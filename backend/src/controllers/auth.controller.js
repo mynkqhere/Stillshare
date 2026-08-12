@@ -91,7 +91,6 @@ const ID = req.params.id
 console.log(ID)
 const username = req.body.username
 if(!username || username.trim()===""){return res.status(401).json({Message: "Username is required"})};
-
 const isusernameexists = await findbyusername(username)
 if (isusernameexists){return res.status(401).json({Message: "Username is taken"})}
 
