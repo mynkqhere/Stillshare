@@ -1,3 +1,4 @@
+const { Changeemail } = require('../controllers/auth.controller')
 const pool = require('../database/database')
 async function findbyusername(username){
   // running sql query to check if username exists in database
@@ -19,4 +20,10 @@ async function changeusername(Id, newusername){
     const result = await pool.query('UPDATE users SET username=$2 WHERE id=$1', [Id, newusername])
     return result.rows[0] 
 }
-module.exports = {findbyusername, findbyemail, createuser, changeusername}
+
+async function changeemail(ID, newemail){
+const result = await pool.query('UPDATE users SET email=$2 WHERE id=$1',[ID, newemail] )
+return result.rows[0]
+}
+
+module.exports = {findbyusername, findbyemail, createuser, changeusername, changeemail}
