@@ -1,4 +1,4 @@
-const {findbyusername, findbyemail, createuser, changeusername, changeemail} = require("../models/postgresql.user.modle");
+const {findbyusername, findbyemail, createuser, changeusername, changeemail, changepassword} = require("../models/postgresql.user.modle");
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const UserModel = require("../models/user.model");
@@ -11,7 +11,6 @@ async function Register(req, res){
     if(!username || username.trim() ===""){return res.status(401).json({Message: "Username is required"})};
     if(!password || password.trim()===""){return res.status(401).json({Message: "Password is required"})};
     if(!email || email.trim()===""){return res.status(401).json({Message: "Email is required"})};
-    
     // sql model to check if username exists in database
     const isusernametaken = await findbyusername(username) // passint username to sql model to check if username exists in database
     if(isusernametaken){return res.status(401).json({Message: "Username is taken"})}
@@ -114,9 +113,7 @@ const ID = req.params.id
 const password = req.body.password
 if(!password || password.trim()===""){ return res.status(401).json({Message: "Password is required"})}
 const updatedpassword = await bcrypt.hash(password, 10)
-const updatepassword = await UserModel.findByIdAndUpdate(ID,{
-    Password: updatedpassword
-})
+const updatepassword = await changepassword(ID, updatedpassword )
 res.status(201).json({Message: "Updated password"})
 }
 
