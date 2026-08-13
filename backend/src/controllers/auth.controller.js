@@ -1,4 +1,4 @@
-const {findbyusername, findbyemail, createuser, changeusername} = require("../models/postgresql.user.modle");
+const {findbyusername, findbyemail, createuser, changeusername, changeemail} = require("../models/postgresql.user.modle");
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const UserModel = require("../models/user.model");
@@ -102,11 +102,9 @@ res.status(201).json({Message: "Updated Username"})
 
 async function Changeemail(req, res){
     const ID = req.params.id
-    const email = req.body.email
-    if(!email || email.trim()===""){return res.status(401).json({Message: "Email is required"})}
-    const updateemail = await UserModel.findByIdAndUpdate(ID,{
-        Email: email
-    })
+    const newemail = req.body.email
+    if(!newemail || newemail.trim()===""){return res.status(401).json({Message: "Email is required"})}
+    const updateemail = await changeemail(ID, newemail)
     res.status(201).json({Message: "Email Updated",})
 }
 
