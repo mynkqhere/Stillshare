@@ -31,3 +31,4 @@ async function changepassword(ID, updatedpassword){
 }
 
 module.exports = {findbyusername, findbyemail, createuser, changeusername, changeemail, changepassword}
+//...
