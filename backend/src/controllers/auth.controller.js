@@ -1,7 +1,6 @@
 const {findbyusername, findbyemail, createuser, changeusername, changeemail, changepassword} = require("../models/postgresql.user.modle");
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
-const UserModel = require("../models/user.model");
 
 
 async function Register(req, res){
