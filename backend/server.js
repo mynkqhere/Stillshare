@@ -1,7 +1,7 @@
 require('dotenv').config();
 const app = require("./src/app");
 const pool = require("./src/database/database");
-const Port = process.env.PORT || 3004
+const Port = process.env.PORT || 3000
 async function StartServer(){
     try{
        await pool.query(`

@@ -1,4 +1,4 @@
-const {createpost, getposts} = require("../models/postgresql.post.modle");
+const {createpost, getpostbyid} = require("../models/postgresql.post.modle");
 const  Upload = require("../services/storage.service")
 
 async function Post(req, res){ 
@@ -20,7 +20,9 @@ async function Getpostbyid(req, res){
     try{
     const ID = req.params.id
     console.log(ID)
-    const Post = await PostModel.find({User: ID}).populate("User", "Username")
+
+    const Post = await getpostbyid(ID)
+    
     if(!Post){return res.status(401).json({Message: "No post found"})}
     console.log(Post)
     res.status(201).json({Message: "Successfuly fetched posts", Post})

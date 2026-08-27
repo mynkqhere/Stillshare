@@ -4,9 +4,9 @@ async function createpost(posturl, postcaption, postuser){
     return result.rows[0]
 }
 
-async function getposts(){
-    const result = await pool.query("SELECT * FROM posts")
+async function getpostbyid(ID){
+    const result = await pool.query('SELECT * FROM posts WHERE user_id=$1', [ID])
     return result.rows
 }
 
-module.exports = {createpost, getposts}
+module.exports = {createpost, getpostbyid}
