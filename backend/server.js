@@ -1,7 +1,7 @@
 require('dotenv').config();
 const app = require("./src/app");
 const pool = require("./src/database/database");
-const Port = process.env.PORT || 3003
+const Port = process.env.PORT || 3004
 async function StartServer(){
     try{
        await pool.query(`
@@ -16,6 +16,14 @@ async function StartServer(){
             user_id INTEGER REFERENCES users(id),
             post_url TEXT,
             caption TEXT
+            );
+            
+            CREATE TABLE IF NOT EXISTS profiles(
+            Profile_id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id),
+            avatar_url TEXT,
+            bio TEXT,
+            name TEXT
             );
        `)
        await pool.query('SELECT NOW()')

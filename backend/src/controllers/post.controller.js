@@ -1,7 +1,5 @@
-const {createpost} = require("../models/postgresql.post.modle");
+const {createpost, getposts} = require("../models/postgresql.post.modle");
 const  Upload = require("../services/storage.service")
-const ProfileModel = require('../models/profile.model');
-const PostModel = require('../models/post.model')
 
 async function Post(req, res){ 
 const Buffer = req.file.buffer;
@@ -15,7 +13,7 @@ res.status(201).json({Message: "Post Created Successfully!", post});
 }
 
 async function GetPosts(req, res){ // need work here 
-    const posts = await PostModel.find().populate("User", "Username Email")
+    const posts = await getposts()
     res.status(201).json({Message: "Posts Fetched Successfully!", posts})
 }
 async function Getpostbyid(req, res){
