@@ -1,31 +1,34 @@
 "use client";
-import PostCard from "./postcard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PostCard from "./postcard";
+
 function FeedCard() {
 const [posts, setPosts] = useState([]);
-async function fetchposts() {
-try {
-const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/post/`, {withCredentials: true});
-console.log(response.data.posts)
-const successmsg = response.data.Message
-setPosts(response.data.posts)
-} catch (error: any) {
-console.error("Failed to Fetch Posts", error.response)
+
+// function to fetch request server to get posts
+async function Fetchposts(){
+    try{
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/post/`,{withCredentials: true})
+        const posts = response?.data?.posts
+        // setting post
+        setPosts(posts)
+        console.log(posts)
+        
+    }catch(error){console.error("Failed to fetch posts why? :", error)}
 }
-}
-useEffect(() => {
-fetchposts();
-}, []);
-return (
+// fetch posts only when component loads
+useEffect(()=> {Fetchposts()}, [])
+
+// rendering posts
+return(
 <div>
-{posts.map((file: any) => (
-
-<PostCard key={file._id} post={file.Post} username={file.User.Username} caption={file.Caption}
- postid={file._id} /> 
-
-))}
+    {posts.map((files)=>(
+        <PostCard key={files?.post_id} post={files?.post_url} caption={files?.caption} />
+    ))}
 </div>
-);
+)
+
+
 }
 export default FeedCard;
