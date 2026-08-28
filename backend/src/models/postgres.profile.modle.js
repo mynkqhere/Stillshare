@@ -15,5 +15,9 @@ async function changebio(ID, Bio){
     const result = await pool.query('UPDATE profiles SET bio=$2 WHERE user_id=$1', [ID, Bio])
     return result.rows[0]
 }
-module.exports = {createprofile, changeavatar, changename, changebio}
+async function getprofilebyid(ID){
+    const result = await pool.query('SELECT * FROM profiles WHERE user_id=$1',[ID])
+    return result.rows[0]
+}
+module.exports = {createprofile, changeavatar, changename, changebio, getprofilebyid}
 

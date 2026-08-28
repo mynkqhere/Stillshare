@@ -1,4 +1,4 @@
-const {createpost, getpostbyid} = require("../models/postgresql.post.modle");
+const {createpost, getpostbyid, deletepostbyid, getposts} = require("../models/postgresql.post.modle");
 const  Upload = require("../services/storage.service")
 
 async function Post(req, res){ 
@@ -16,6 +16,7 @@ async function GetPosts(req, res){ // need work here
     const posts = await getposts()
     res.status(201).json({Message: "Posts Fetched Successfully!", posts})
 }
+
 async function Getpostbyid(req, res){
     try{
     const ID = req.params.id
@@ -32,7 +33,7 @@ async function Deletepost(req, res){
     try{
     const ID = req.params.id
     console.log(ID)
-    const Deletepost = await PostModel.findByIdAndDelete({_id: ID})
+    const Deletepost = await deletepostbyid(ID)
     res.status(201).json({Message: "Post deleted successfully"})
 }catch(error){console.error("something went wrong while deleting the post", error)}}
 

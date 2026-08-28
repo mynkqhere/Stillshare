@@ -1,4 +1,4 @@
-const {createprofile, changeavatar, changename, changebio} = require("../models/postgres.profile.modle");
+const {createprofile, changeavatar, changename, changebio, getprofilebyid} = require("../models/postgres.profile.modle");
 const Upload = require('../services/storage.service');
 async function CreateProfile(req, res){
     console.log(req.body)
@@ -20,7 +20,7 @@ async function CreateProfile(req, res){
 async function GetProfile(req, res){
 const ID = req.params.id
 console.log("id from localstorage:",ID)
-const user = await ProfileModel.findOne({User: ID}).populate("User")
+const user = await getprofilebyid(ID)
 if(!user){return res.status(400).json({Message: "User not found"})}
 res.status(201).json({Message: "User Fetched Successfully", user})
 }
