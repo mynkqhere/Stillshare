@@ -10,11 +10,10 @@ const [posts, setPosts] = useState([]);
 async function Fetchposts(){
     try{
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/post/`,{withCredentials: true})
-        const posts = response?.data?.posts
+        const fetchedPosts = Array.isArray(response?.data?.posts) ? response.data.posts : [];
         // setting post
-        setPosts(posts)
-        console.log(posts)
-        
+        setPosts(fetchedPosts)
+        console.log(fetchedPosts)
     }catch(error){console.error("Failed to fetch posts why? :", error)}
 }
 // fetch posts only when component loads
@@ -23,7 +22,7 @@ useEffect(()=> {Fetchposts()}, [])
 // rendering posts
 return(
 <div>
-    {posts.map((files)=>(
+    {Array.isArray(posts) && posts.map((files)=>(
         <PostCard key={files?.post_id} post={files?.post_url} caption={files?.caption} />
     ))}
 </div>

@@ -14,7 +14,7 @@ async function deletepostbyid(ID){
 }
 async function getposts(){
     const result = await pool.query('SELECT * FROM posts')
-    return result.rows[0]
+    return result.rows
 }
 
 module.exports = {createpost, getpostbyid, deletepostbyid, getposts}
