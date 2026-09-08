@@ -1,14 +1,18 @@
-import {View, Text, TouchableOpacity} from 'react-native';
 import {router} from 'expo-router';
+import {View, Text, TouchableOpacity} from 'react-native';
 function Home(){
   return(
     <View>
-      <Text>Welcome you successfully reached to Stillshare home</Text>
-      <TouchableOpacity onPress={()=> router.push('/signup')}>
-        <Text>Click here to go to signup page</Text>
+      <Text>Home Screen</Text>
+      <TouchableOpacity onPress={()=>router.push('/signup')}>
+        <Text>Sign up</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={()=> router.push('/login')}>
+        <Text>Login</Text>
       </TouchableOpacity>
     </View>
   )
+
 }
 export default Home;
  
