@@ -1,2 +1,1 @@
-## Stillshare 
-Social Media Platform
+## Stillshare
